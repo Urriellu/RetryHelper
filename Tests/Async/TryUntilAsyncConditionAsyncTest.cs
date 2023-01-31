@@ -13,8 +13,10 @@ namespace Tests
         [SetUp]
         public void SetUp()
         {
-            _target = new RetryHelper();
-            _target.DefaultTryInterval = TimeSpan.FromMilliseconds(50);
+            _target = new RetryHelper
+            {
+                DefaultTryInterval = TimeSpan.FromMilliseconds(50)
+            };
         }
 
         [Test]

@@ -12,16 +12,20 @@ namespace Tests
         [SetUp]
         public void SetUp()
         {
-            _target = new RetryHelper();
-            _target.DefaultTryInterval = TimeSpan.FromMilliseconds(RetryHelperTest.Interval);
+            _target = new RetryHelper
+            {
+                DefaultTryInterval = TimeSpan.FromMilliseconds(RetryHelperTest.Interval)
+            };
         }
 
         [Test]
         public void TestTryUntilNoExceptionAfterFiveTimes()
         {
             var times = 10;
-            var generator = new Generator(times, true);
-            generator.RandomExceptionType = true;
+            var generator = new Generator(times, true)
+            {
+                RandomExceptionType = true
+            };
             bool result = false;
             Assert.That(RetryHelperTest.MeasureTime(() =>
                 result = _target.Try(() => generator.Next()).UntilNoException()),
@@ -73,8 +77,10 @@ namespace Tests
         public void TestTryUntilNoExceptionOfTypeHavingOtherException()
         {
             var times = 10;
-            var generator = new Generator(times, true);
-            generator.RandomExceptionType = true;
+            var generator = new Generator(times, true)
+            {
+                RandomExceptionType = true
+            };
             bool result = false;
             Assert.That(() =>
                 result = _target.Try(() => generator.Next()).UntilNoException<ApplicationException>(),
@@ -86,8 +92,10 @@ namespace Tests
         public void TestTryUntilNoExceptionOfTypePassedAsParameterHavingOtherException()
         {
             var times = 10;
-            var generator = new Generator(times, true);
-            generator.RandomExceptionType = true;
+            var generator = new Generator(times, true)
+            {
+                RandomExceptionType = true
+            };
             bool result = false;
             Assert.That(() =>
                 result = _target.Try(() => generator.Next()).UntilNoException(typeof(ApplicationException)),

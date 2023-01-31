@@ -13,16 +13,20 @@ namespace Tests
         [SetUp]
         public void SetUp()
         {
-            _target = new RetryHelper();
-            _target.DefaultTryInterval = TimeSpan.FromMilliseconds(RetryHelperTest.Interval);
+            _target = new RetryHelper
+            {
+                DefaultTryInterval = TimeSpan.FromMilliseconds(RetryHelperTest.Interval)
+            };
         }
 
         [Test]
         public async Task TestTryUntilNoExceptionAfterFiveTimesAsync()
         {
             var times = 10;
-            var generator = new Generator(times, true);
-            generator.RandomExceptionType = true;
+            var generator = new Generator(times, true)
+            {
+                RandomExceptionType = true
+            };
             bool result = false;
             Assert.That(await RetryHelperTest.MeasureTime(async () =>
                 result = await _target.Try(async () => await generator.NextAsync()).UntilNoException()),
@@ -74,8 +78,10 @@ namespace Tests
         public void TestTryUntilNoExceptionOfTypeHavingOtherExceptionAsync()
         {
             var times = 10;
-            var generator = new Generator(times, true);
-            generator.RandomExceptionType = true;
+            var generator = new Generator(times, true)
+            {
+                RandomExceptionType = true
+            };
             bool result = false;
             Assert.ThrowsAsync<InvalidOperationException>(async () =>
                 result = await _target.Try(async () => await generator.NextAsync()).UntilNoException<ApplicationException>());
@@ -86,8 +92,10 @@ namespace Tests
         public void TestTryUntilNoExceptionOfTypePassedAsParameterHavingOtherExceptionAsync()
         {
             var times = 10;
-            var generator = new Generator(times, true);
-            generator.RandomExceptionType = true;
+            var generator = new Generator(times, true)
+            {
+                RandomExceptionType = true
+            };
             bool result = false;
             Assert.ThrowsAsync<InvalidOperationException>(async () =>
                 result = await _target.Try(async () => await generator.NextAsync()).UntilNoException(typeof(ApplicationException)));
