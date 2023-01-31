@@ -31,20 +31,17 @@ namespace Tests
         public bool Next()
         {
             bool result =  (_currentTimes = TriedTimes + 1) > _trueAfterTimes;
-            if (!result && _throwsException)
+            if (result || !_throwsException) return result;
+            if (RandomExceptionType && TriedTimes % 2 == 0)
             {
-                if (RandomExceptionType && TriedTimes % 2 == 0)
-                {
-                    Console.WriteLine("Throwing InvalidOperationException");
-                    throw new InvalidOperationException();
-                }
-                else
-                {
-                    Console.WriteLine("Throwing ApplicationException");
-                    throw new ApplicationException();
-                }
+                Console.WriteLine("Throwing InvalidOperationException");
+                throw new InvalidOperationException();
             }
-            return result;
+            else
+            {
+                Console.WriteLine("Throwing ApplicationException");
+                throw new ApplicationException();
+            }
         }
 
         public Task<bool> NextAsync()
