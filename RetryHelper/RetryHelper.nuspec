@@ -11,7 +11,7 @@
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>$description$</description>
     <releaseNotes>Support async/await.</releaseNotes>
-    <copyright>Copyright 2018 $author$</copyright>
+    <copyright>Copyright 2023 $author$</copyright>
     <tags>C# Retry RetryHelper RetryEngine RetryLogic Try TryUntil</tags>
   </metadata>
 </package>
