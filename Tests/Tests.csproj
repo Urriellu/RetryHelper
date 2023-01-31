@@ -14,7 +14,7 @@
     </ItemGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\RetryHelper\RetryHelper.csproj" />
+      <ProjectReference Include="..\RetryHelperNG\RetryHelperNG.csproj" />
     </ItemGroup>
 
 </Project>

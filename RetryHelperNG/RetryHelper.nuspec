@@ -6,12 +6,12 @@
     <title>$title$</title>
     <authors>$author$</authors>
     <owners>$author$</owners>
-    <licenseUrl>https://github.com/gildorwang/RetryHelper/blob/master/LICENSE</licenseUrl>
-    <projectUrl>https://github.com/gildorwang/RetryHelper</projectUrl>
+    <licenseUrl>https://github.com/gildorwang/RetryHelperNG/blob/master/LICENSE</licenseUrl>
+    <projectUrl>https://github.com/gildorwang/RetryHelperNG</projectUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>$description$</description>
     <releaseNotes>Support async/await.</releaseNotes>
     <copyright>Copyright 2023 $author$</copyright>
-    <tags>C# Retry RetryHelper RetryEngine RetryLogic Try TryUntil</tags>
+    <tags>C# Retry RetryHelperNG RetryEngine RetryLogic Try TryUntil</tags>
   </metadata>
 </package>

@@ -59,7 +59,7 @@ namespace Samples
             RetryHelper.Instance.DefaultTryInterval = TimeSpan.FromMilliseconds(100);
 
 
-            // Get another RetryHelper instance with custom TraceSource and seperate configration
+            // Get another RetryHelperNG instance with custom TraceSource and seperate configration
             var retryHelper = new RetryHelper(new TraceSource("MyTraceSource"))
             {
                 DefaultMaxTryCount = 10,

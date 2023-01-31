@@ -1,0 +1,12 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFrameworks>net6.0;net7.0</TargetFrameworks>
+    <Version>3.0</Version>
+    <RootNamespace>RetryHelper</RootNamespace>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <Description>This is a generic helper to help try some action until the given condition is met. It now works seamlessly with C# async/await keywords for asynchronous operations, which is very common in a scenario that requires retry logic.</Description>
+    <RepositoryUrl>https://github.com/Urriellu/RetryHelperNG</RepositoryUrl>
+  </PropertyGroup>
+
+</Project>

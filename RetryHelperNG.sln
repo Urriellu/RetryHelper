@@ -1,6 +1,6 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RetryHelper", "RetryHelper\RetryHelper.csproj", "{535DF112-D6F3-466A-BEDB-B703D96573C6}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RetryHelperNG", "RetryHelperNG\RetryHelperNG.csproj", "{535DF112-D6F3-466A-BEDB-B703D96573C6}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tests", "Tests\Tests.csproj", "{0C015E3A-09AF-4DEC-97A0-9A21874960B9}"
 EndProject
