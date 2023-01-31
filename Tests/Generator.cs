@@ -8,7 +8,7 @@ namespace Tests
         private readonly int _trueAfterTimes;
         private readonly bool _throwsException;
 
-        public bool RandomExceptionType { get; set; }
+        public bool RandomExceptionType { get; init; }
 
         public int TriedTimes { get; private set; }
 
