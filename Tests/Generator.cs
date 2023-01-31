@@ -8,14 +8,9 @@ namespace Tests
         private readonly int _trueAfterTimes;
         private readonly bool _throwsException;
 
-        private int _currentTimes;
-
         public bool RandomExceptionType { get; set; }
 
-        public int TriedTimes
-        {
-            get { return _currentTimes; }
-        }
+        public int TriedTimes { get; private set; }
 
         /// <summary>
         /// Initializes a new instance of the <see cref="Generator" /> class.
@@ -30,7 +25,7 @@ namespace Tests
 
         public bool Next()
         {
-            bool result =  (_currentTimes = TriedTimes + 1) > _trueAfterTimes;
+            bool result =  (TriedTimes = TriedTimes + 1) > _trueAfterTimes;
             if (result || !_throwsException) return result;
             if (RandomExceptionType && TriedTimes % 2 == 0)
             {
