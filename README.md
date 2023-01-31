@@ -16,7 +16,7 @@ using Retry;
 
 ### One-line example
 ````csharp
-RetryHelper.Instance.Try(() => TryDoSomething()).UntilNoException();
+RetryHelper.Instance.Try(TryDoSomething).UntilNoException();
 ````
 
 ### One-line async example
@@ -30,19 +30,19 @@ await RetryHelper.Instance.Try(async () => await TryGetValueAsync()).Until(async
 RetryHelper.Instance.Try(() => TryGetValue()).Until(result => result < 0.1);
 
 // Get the result from the retried method
-var resultSmallEnough = RetryHelper.Instance.Try(() => TryGetValue()).Until(result => result < 0.1);
+double resultSmallEnough = RetryHelper.Instance.Try(TryGetValue).Until(result => result < 0.1);
 
 // Specify interval as 100 ms
-RetryHelper.Instance.Try(() => TryGetValue()).WithTryInterval(100).Until(result => result < 0.1);
-
+RetryHelper.Instance.Try(TryGetValue).WithTryInterval(100).Until(result => result < 0.1);
+            
 // Try 20 times maximum and throw TimeoutException if exceeded
-RetryHelper.Instance.Try(() => TryGetValue()).WithMaxTryCount(20).Until(result => result < 0.1);
+RetryHelper.Instance.Try(TryGetValue).WithMaxTryCount(20).Until(result => result < 0.1);
 
 // Can also limit the total try time duration
-RetryHelper.Instance.Try(() => TryGetValue()).WithTimeLimit(TimeSpan.FromSeconds(10)).Until(result => result < 0.1);
+RetryHelper.Instance.Try(TryGetValue).WithTimeLimit(TimeSpan.FromSeconds(10)).Until(result => result < 0.1);
 
 // Specify the extra success/fail/timeout action
-RetryHelper.Instance.Try(() => TryGetValue())
+RetryHelper.Instance.Try(TryGetValue)
     .WithMaxTryCount(20)
     .OnSuccess(result => Trace.TraceInformation($"Got result {result}."))
     .OnFailure(result => Trace.TraceWarning($"Try failed. Got {result}."))
@@ -56,7 +56,7 @@ RetryHelper.Instance.Try(() => TryGetValue())
 
 Multiple callbacks of the same type can be registered. In this case, the order of invocation is not guaranteed.
 ````csharp
-RetryHelper.Instance.Try(() => TryGetValue())
+RetryHelper.Instance.Try(TryGetValue)
     .OnFailure(result => Trace.TraceWarning($"Try failed. Got {result}."))
     .OnFailure(() => Trace.TraceWarning($"As I said or will say, it failed."))
     .Until(result => result < 0.1);
@@ -67,13 +67,13 @@ RetryHelper.Instance.Try(() => TryGetValue())
 
 ````csharp
 // Retry on any (non-fatal) exception
-RetryHelper.Instance.Try(() => TryDoSomething()).UntilNoException();
+RetryHelper.Instance.Try(TryDoSomething).UntilNoException();
 
 // Retry on specific exception
-RetryHelper.Instance.Try(() => TryDoSomething()).UntilNoException<ApplicationException>();
+RetryHelper.Instance.Try(TryDoSomething).UntilNoException<ApplicationException>();
 
 // Or pass the Type object as parameter
-RetryHelper.Instance.Try(() => TryDoSomething()).UntilNoException(typeof(ApplicationException));
+RetryHelper.Instance.Try(TryDoSomething).UntilNoException(typeof(ApplicationException));
 ````
 
 
@@ -120,17 +120,20 @@ RetryHelper.Instance.DefaultTryInterval = TimeSpan.FromMilliseconds(100);
 ### Get another RetryHelper instance with custom TraceSource and unique configuration
 
 ````csharp
-var retryHelper = new RetryHelper(new TraceSource("MyTraceSource"))
+RetryHelper retryHelper = new(new TraceSource("MyTraceSource"))
 {
     DefaultMaxTryCount = 10,
     DefaultMaxTryTime = TimeSpan.FromSeconds(30),
-    DefaultTryInterval = TimeSpan.FromMilliseconds(500),
+    DefaultTryInterval = TimeSpan.FromMilliseconds(500)
 };
 ````
 
 
 Change Log
 ==========
+### v3.0.0 (2023/1/30)
+* Upgraded to .NET 6 and 7
+
 ### v2.1.0 (2018/5/30)
 * Support passing exception type to `UntilNoException`
 * Allow `OnFailure`, `OnSuccess` and `OnTimeout` callbacks to take no parameter
@@ -146,4 +149,4 @@ Change Log
 
 LICENSE
 =======
-[Apache 2.0 License](https://github.com/gildorwang/RetryHelper/blob/master/LICENSE)
+[Apache 2.0 License](https://github.com/Urriellu/RetryHelperNG/blob/master/LICENSE)

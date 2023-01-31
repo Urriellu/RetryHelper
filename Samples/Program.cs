@@ -60,12 +60,12 @@ namespace Samples
 
 
             // Get another RetryHelperNG instance with custom TraceSource and seperate configration
-            var retryHelper = new RetryHelper(new TraceSource("MyTraceSource"))
-            {
-                DefaultMaxTryCount = 10,
-                DefaultMaxTryTime = TimeSpan.FromSeconds(30),
-                DefaultTryInterval = TimeSpan.FromMilliseconds(500)
-            };
+RetryHelper retryHelper = new(new TraceSource("MyTraceSource"))
+{
+    DefaultMaxTryCount = 10,
+    DefaultMaxTryTime = TimeSpan.FromSeconds(30),
+    DefaultTryInterval = TimeSpan.FromMilliseconds(500)
+};
         }
 
         private static async Task Example3()
