@@ -22,7 +22,7 @@ namespace Tests
         [Test]
         public async Task TestTryUntilWithTimeLimitAsync()
         {
-            var times = 5;
+            int times = 5;
             var generator = new Generator(times);
             bool result = false;
             Assert.That(await RetryHelperTest.MeasureTime(async () =>
@@ -34,7 +34,7 @@ namespace Tests
         [Test]
         public void TestTryUntilWithTimeLimitExceededAsync()
         {
-            var times = 5;
+            int times = 5;
             var generator = new Generator(times + 1);
             Assert.ThrowsAsync<TimeoutException>(async () =>
                 await _target

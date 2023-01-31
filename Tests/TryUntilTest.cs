@@ -21,7 +21,7 @@ namespace Tests
         [Test]
         public void TestTryUntilAfterFiveTimes()
         {
-            var times = 5;
+            int times = 5;
             var generator = new Generator(times);
             bool result = false;
             Assert.That(RetryHelperTest.MeasureTime(() =>
@@ -34,7 +34,7 @@ namespace Tests
         [Test]
         public void TestTryUntilSuccessFirstTime()
         {
-            var times = 0;
+            int times = 0;
             var generator = new Generator(times);
             bool result = false;
             Assert.That(RetryHelperTest.MeasureTime(() =>

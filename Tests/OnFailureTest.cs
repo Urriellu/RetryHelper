@@ -23,9 +23,9 @@ namespace Tests
         
         public void TestOnFailureWithNoParameter()
         {
-            var times = 5;
+            int times = 5;
             var generator = new Generator(times);
-            var onFailureTriggered = 0;
+            int onFailureTriggered = 0;
             _target.Try(() => generator.Next())
                 .OnFailure(() =>
                 {
@@ -38,9 +38,9 @@ namespace Tests
         [Test]
         public void TestOnFailureAfterFiveTimes()
         {
-            var times = 5;
+            int times = 5;
             var generator = new Generator(times);
-            var onFailureTriggered = 0;
+            int onFailureTriggered = 0;
             _target.Try(() => generator.Next())
                 .OnFailure(t =>
                 {
@@ -54,9 +54,9 @@ namespace Tests
         [Test]
         public void TestOnFailureShouldNotFireIfSucceedAtFirstTime()
         {
-            var times = 0;
+            int times = 0;
             var generator = new Generator(times);
-            var onFailureTriggered = 0;
+            int onFailureTriggered = 0;
             _target.Try(() => generator.Next())
                    .OnFailure(t => onFailureTriggered++)
                    .Until(t => t);
@@ -76,7 +76,7 @@ namespace Tests
             var binaryReader = new BinaryReader(stream);
             for(int i = 0; i < len * 3; i++)
             {
-                var b = RetryHelper.Instance
+                byte b = RetryHelper.Instance
                                    .Try(() => binaryReader.ReadByte())
                                    .WithTryInterval(0)
                                    .OnFailure(t => stream.Seek(0, SeekOrigin.Begin))
@@ -88,9 +88,9 @@ namespace Tests
         [Test]
         public void TestOnFailureWithTryCount()
         {
-            var times = 5;
+            int times = 5;
             var generator = new Generator(times);
-            var onFailureTriggered = 0;
+            int onFailureTriggered = 0;
             _target.Try(() => generator.Next())
                    .OnFailure((t, count) =>
                    {
@@ -104,10 +104,10 @@ namespace Tests
         [Test]
         public void TestMultipleOnFailure()
         {
-            var times = 5;
+            int times = 5;
             var generator = new Generator(times);
-            var onFailureTriggered1 = 0;
-            var onFailureTriggered2 = 0;
+            int onFailureTriggered1 = 0;
+            int onFailureTriggered2 = 0;
             _target.Try(() => generator.Next())
                 .OnFailure(t =>
                 {

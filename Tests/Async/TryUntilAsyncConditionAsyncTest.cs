@@ -22,9 +22,9 @@ namespace Tests
         [Test]
         public async Task TestTryUntilAsyncCondition()
         {
-            var times = 5;
+            int times = 5;
             var generator = new Generator(times);
-            var result = await _target.Try(() => Task.FromResult(true)).Until(async () => await generator.NextAsync());
+            bool result = await _target.Try(() => Task.FromResult(true)).Until(async () => await generator.NextAsync());
             Assert.That(generator.TriedTimes, Is.EqualTo(times + 1));
             Assert.IsTrue(result);
         }

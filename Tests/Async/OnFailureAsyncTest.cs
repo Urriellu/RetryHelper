@@ -23,9 +23,9 @@ namespace Tests
         [Test]
         public async Task TestOnFailureWithNoParameter()
         {
-            var times = 5;
+            int times = 5;
             var generator = new Generator(times);
-            var onFailureTriggered = 0;
+            int onFailureTriggered = 0;
             await _target.TryAsync(() => generator.Next())
                 .OnFailure(() => onFailureTriggered++)
                 .Until(t => t);
@@ -35,9 +35,9 @@ namespace Tests
         [Test]
         public async Task TestOnFailureAfterFiveTimesAsync()
         {
-            var times = 5;
+            int times = 5;
             var generator = new Generator(times);
-            var onFailureTriggered = 0;
+            int onFailureTriggered = 0;
             await _target.TryAsync(() => generator.Next())
                 .OnFailure(t =>
                 {
@@ -51,9 +51,9 @@ namespace Tests
         [Test]
         public async Task TestOnFailureAsyncAfterFiveTimesAsync()
         {
-            var times = 5;
+            int times = 5;
             var generator = new Generator(times);
-            var onFailureTriggered = 0;
+            int onFailureTriggered = 0;
             await _target.TryAsync(() => generator.Next())
                 .OnFailure(async (t, count) =>
                 {
@@ -71,9 +71,9 @@ namespace Tests
         [Test]
         public async Task TestOnFailureAsyncWithNoParameterAsync()
         {
-            var times = 5;
+            int times = 5;
             var generator = new Generator(times);
-            var onFailureTriggered = 0;
+            int onFailureTriggered = 0;
             await _target.TryAsync(() => generator.Next())
                 .OnFailure(async () => await Task.Run(() => onFailureTriggered++))
                 .Until(t => t);
@@ -83,9 +83,9 @@ namespace Tests
         [Test]
         public async Task TestOnFailureShouldNotFireIfSucceedAtFirstTimeAsync()
         {
-            var times = 0;
+            int times = 0;
             var generator = new Generator(times);
-            var onFailureTriggered = 0;
+            int onFailureTriggered = 0;
             await _target.TryAsync(() => generator.Next())
                 .OnFailure(() => onFailureTriggered++)
                 .Until(t => t);
@@ -105,7 +105,7 @@ namespace Tests
             var binaryReader = new BinaryReader(stream);
             for (int i = 0; i < len * 3; i++)
             {
-                var b = await RetryHelper.Instance
+                byte b = await RetryHelper.Instance
                     .TryAsync(() => binaryReader.ReadByte())
                     .WithTryInterval(0)
                     .OnFailure(t => stream.Seek(0, SeekOrigin.Begin))
@@ -117,9 +117,9 @@ namespace Tests
         [Test]
         public async Task TestOnFailureWithTryCountAsync()
         {
-            var times = 5;
+            int times = 5;
             var generator = new Generator(times);
-            var onFailureTriggered = 0;
+            int onFailureTriggered = 0;
             await _target.TryAsync(() => generator.Next())
                 .OnFailure((t, count) =>
                 {
@@ -133,10 +133,10 @@ namespace Tests
         [Test]
         public async Task TestMultipleOnFailureAsync()
         {
-            var times = 5;
+            int times = 5;
             var generator = new Generator(times);
-            var onFailureTriggered1 = 0;
-            var onFailureTriggered2 = 0;
+            int onFailureTriggered1 = 0;
+            int onFailureTriggered2 = 0;
             await _target.TryAsync(() => generator.Next())
                 .OnFailure(async t =>
                 {

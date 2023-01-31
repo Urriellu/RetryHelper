@@ -21,7 +21,7 @@ namespace Tests
         [Test]
         public void TestTryUntilWithTimeLimit()
         {
-            var times = 5;
+            int times = 5;
             var generator = new Generator(times);
             bool result = false;
             Assert.That(RetryHelperTest.MeasureTime(() =>
@@ -33,7 +33,7 @@ namespace Tests
         [Test]
         public void TestTryUntilWithTimeLimitExceeded()
         {
-            var times = 5;
+            int times = 5;
             var generator = new Generator(times + 1);
             Assert.That(() =>
                 _target.Try(() => generator.Next()).WithTimeLimit(RetryHelperTest.Interval * times).Until(t => t),

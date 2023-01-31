@@ -21,7 +21,7 @@ namespace Tests
         [Test]
         public void TestOnTimeoutShouldNotFire()
         {
-            var times = 5;
+            int times = 5;
             var generator = new Generator(times);
             _target.Try(() => generator.Next())
                    .OnTimeout(t => Assert.Fail())
@@ -31,9 +31,9 @@ namespace Tests
         [Test]
         public void TestOnTimeoutWithNoParameter()
         {
-            var times = 5;
+            int times = 5;
             var generator = new Generator(times);
-            var onTimeoutTriggered = false;
+            bool onTimeoutTriggered = false;
             Assert.That(() =>
                 _target.Try(() => generator.Next())
                        .WithMaxTryCount(times - 1)
@@ -46,9 +46,9 @@ namespace Tests
         [Test]
         public void TestOnTimeoutAfterFiveTimes()
         {
-            var times = 5;
+            int times = 5;
             var generator = new Generator(times);
-            var onTimeoutTriggered = false;
+            bool onTimeoutTriggered = false;
             Assert.That(() =>
                 _target.Try(() => generator.Next())
                        .WithMaxTryCount(times - 1)
@@ -65,10 +65,10 @@ namespace Tests
         [Test]
         public void TestOnTimeoutWithTriedCount()
         {
-            var times = 5;
+            int times = 5;
             var generator = new Generator(times);
-            var onTimeoutTriggered = false;
-            var maxTryCount = times - 1;
+            bool onTimeoutTriggered = false;
+            int maxTryCount = times - 1;
             Assert.That(() =>
                 _target.Try(() => generator.Next())
                        .WithMaxTryCount(maxTryCount)
@@ -85,10 +85,10 @@ namespace Tests
         [Test]
         public void TestMultipleOnTimeout()
         {
-            var times = 5;
+            int times = 5;
             var generator = new Generator(times);
-            var onTimeoutTriggered1 = false;
-            var onTimeoutTriggered2 = false;
+            bool onTimeoutTriggered1 = false;
+            bool onTimeoutTriggered2 = false;
             Assert.That(() =>
                 _target.Try(() => generator.Next())
                        .WithMaxTryCount(times - 1)

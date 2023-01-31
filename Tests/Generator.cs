@@ -30,7 +30,7 @@ namespace Tests
 
         public bool Next()
         {
-            var result =  (_currentTimes = TriedTimes + 1) > _trueAfterTimes;
+            bool result =  (_currentTimes = TriedTimes + 1) > _trueAfterTimes;
             if (!result && _throwsException)
             {
                 if (RandomExceptionType && TriedTimes % 2 == 0)

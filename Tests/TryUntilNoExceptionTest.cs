@@ -21,7 +21,7 @@ namespace Tests
         [Test]
         public void TestTryUntilNoExceptionAfterFiveTimes()
         {
-            var times = 10;
+            int times = 10;
             var generator = new Generator(times, true)
             {
                 RandomExceptionType = true
@@ -37,7 +37,7 @@ namespace Tests
         [Test]
         public void TestTryUntilNoExceptionSuccessFirstTime()
         {
-            var times = 0;
+            int times = 0;
             var generator = new Generator(times);
             bool result = false;
             Assert.That(RetryHelperTest.MeasureTime(() =>
@@ -50,7 +50,7 @@ namespace Tests
         [Test]
         public void TestTryUntilNoExceptionOfTypeAfterFiveTimes()
         {
-            var times = 10;
+            int times = 10;
             var generator = new Generator(times, true);
             bool result = false;
             Assert.That(RetryHelperTest.MeasureTime(() =>
@@ -63,7 +63,7 @@ namespace Tests
         [Test]
         public void TestTryUntilNoExceptionOfTypePassedAsParameterAfterFiveTimes()
         {
-            var times = 10;
+            int times = 10;
             var generator = new Generator(times, true);
             bool result = false;
             Assert.That(RetryHelperTest.MeasureTime(() =>
@@ -76,7 +76,7 @@ namespace Tests
         [Test]
         public void TestTryUntilNoExceptionOfTypeHavingOtherException()
         {
-            var times = 10;
+            int times = 10;
             var generator = new Generator(times, true)
             {
                 RandomExceptionType = true
@@ -91,7 +91,7 @@ namespace Tests
         [Test]
         public void TestTryUntilNoExceptionOfTypePassedAsParameterHavingOtherException()
         {
-            var times = 10;
+            int times = 10;
             var generator = new Generator(times, true)
             {
                 RandomExceptionType = true

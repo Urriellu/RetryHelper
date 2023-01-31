@@ -22,9 +22,9 @@ namespace Tests
         [Test]
         public async Task TestOnSuccessWithNoParameterAsync()
         {
-            var times = 5;
+            int times = 5;
             var generator = new Generator(times);
-            var onSuccessTriggered = false;
+            bool onSuccessTriggered = false;
             await _target.TryAsync(() => generator.Next())
                 .OnSuccess(() => onSuccessTriggered = true)
                 .Until(t => t);
@@ -34,9 +34,9 @@ namespace Tests
         [Test]
         public async Task TestOnSuccessAfterFiveTimesAsync()
         {
-            var times = 5;
+            int times = 5;
             var generator = new Generator(times);
-            var onSuccessTriggered = false;
+            bool onSuccessTriggered = false;
             await _target.TryAsync(() => generator.Next())
                 .OnSuccess(t => {
                     Assert.IsTrue(t);
@@ -49,9 +49,9 @@ namespace Tests
         [Test]
         public async Task TestOnSuccessAsyncWithNoParameterAsync()
         {
-            var times = 5;
+            int times = 5;
             var generator = new Generator(times);
-            var onSuccessTriggered = false;
+            bool onSuccessTriggered = false;
             await _target.TryAsync(() => generator.Next())
                 .OnSuccess(async () =>
                 {
@@ -65,9 +65,9 @@ namespace Tests
         [Test]
         public async Task TestOnSuccessAsyncAfterFiveTimesAsync()
         {
-            var times = 5;
+            int times = 5;
             var generator = new Generator(times);
-            var onSuccessTriggered = false;
+            bool onSuccessTriggered = false;
             await _target.TryAsync(() => generator.Next())
                 .OnSuccess(async t =>
                 {
@@ -82,9 +82,9 @@ namespace Tests
         [Test]
         public void TestOnSuccessShouldNotFireAsync()
         {
-            var times = 5;
+            int times = 5;
             var generator = new Generator(times);
-            var onSuccessTriggered = false;
+            bool onSuccessTriggered = false;
             Assert.ThrowsAsync<TimeoutException>(() =>
                 _target.TryAsync(() => generator.Next())
                     .WithMaxTryCount(times - 1)
@@ -96,9 +96,9 @@ namespace Tests
         [Test]
         public async Task TestOnSuccessWithTriedCountAsync()
         {
-            var times = 5;
+            int times = 5;
             var generator = new Generator(times);
-            var onSuccessTriggered = false;
+            bool onSuccessTriggered = false;
             await _target.TryAsync(() => generator.Next())
                 .OnSuccess((t, count) =>
                 {
@@ -112,10 +112,10 @@ namespace Tests
         [Test]
         public async Task TestMultipleOnSuccessAsync()
         {
-            var times = 5;
+            int times = 5;
             var generator = new Generator(times);
-            var onSuccessTriggered1 = false;
-            var onSuccessTriggered2 = false;
+            bool onSuccessTriggered1 = false;
+            bool onSuccessTriggered2 = false;
             await _target.TryAsync(() => generator.Next())
                    .OnSuccess(async t =>
                    {

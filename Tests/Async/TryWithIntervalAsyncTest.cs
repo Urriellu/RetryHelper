@@ -22,7 +22,7 @@ namespace Tests
         [Test]
         public async Task TestTryUntilWithTryIntervalAsync()
         {
-            var times = 5;
+            int times = 5;
             var generator = new Generator(times);
             bool result = false;
             Assert.That(await RetryHelperTest.MeasureTime(async () =>

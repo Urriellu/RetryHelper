@@ -22,7 +22,7 @@ namespace Tests
         [Test]
         public async Task TestTryUntilNoExceptionAfterFiveTimesAsync()
         {
-            var times = 10;
+            int times = 10;
             var generator = new Generator(times, true)
             {
                 RandomExceptionType = true
@@ -38,7 +38,7 @@ namespace Tests
         [Test]
         public async Task TestTryUntilNoExceptionSuccessFirstTimeAsync()
         {
-            var times = 0;
+            int times = 0;
             var generator = new Generator(times);
             bool result = false;
             Assert.That(await RetryHelperTest.MeasureTime(async () =>
@@ -51,7 +51,7 @@ namespace Tests
         [Test]
         public async Task TestTryUntilNoExceptionOfTypeAfterFiveTimesAsync()
         {
-            var times = 10;
+            int times = 10;
             var generator = new Generator(times, true);
             bool result = false;
             Assert.That(await RetryHelperTest.MeasureTime(async () =>
@@ -64,7 +64,7 @@ namespace Tests
         [Test]
         public async Task TestTryUntilNoExceptionOfTypePassedAsParameterAfterFiveTimesAsync()
         {
-            var times = 10;
+            int times = 10;
             var generator = new Generator(times, true);
             bool result = false;
             Assert.That(await RetryHelperTest.MeasureTime(async () =>
@@ -77,7 +77,7 @@ namespace Tests
         [Test]
         public void TestTryUntilNoExceptionOfTypeHavingOtherExceptionAsync()
         {
-            var times = 10;
+            int times = 10;
             var generator = new Generator(times, true)
             {
                 RandomExceptionType = true
@@ -91,7 +91,7 @@ namespace Tests
         [Test]
         public void TestTryUntilNoExceptionOfTypePassedAsParameterHavingOtherExceptionAsync()
         {
-            var times = 10;
+            int times = 10;
             var generator = new Generator(times, true)
             {
                 RandomExceptionType = true

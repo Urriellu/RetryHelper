@@ -25,7 +25,7 @@ namespace Samples
             RetryHelper.Instance.Try(TryGetValue).Until(result => result < 0.1);
 
             // Get the result from the retried method
-            var resultSmallEnough = RetryHelper.Instance.Try(TryGetValue).Until(result => result < 0.1);
+            double resultSmallEnough = RetryHelper.Instance.Try(TryGetValue).Until(result => result < 0.1);
 
             // Specify interval
             RetryHelper.Instance.Try(TryGetValue).WithTryInterval(100).Until(result => result < 0.1);
@@ -100,7 +100,7 @@ namespace Samples
         static double TryGetValue()
         {
             // This method returns random double in [0, 1)
-            var randomValue = _random.NextDouble();
+            double randomValue = _random.NextDouble();
             Console.WriteLine($"[{nameof(TryGetValue)}]generated: {randomValue}.");
             return randomValue;
         }
@@ -110,7 +110,7 @@ namespace Samples
             // This method simulates an asynchronous operation to fetch value.
             // It delays 100 ms, and then returns random double in [0, 1)
             await Task.Delay(100);
-            var randomValue = _random.NextDouble();
+            double randomValue = _random.NextDouble();
             Console.WriteLine($"[{nameof(TryGetValueAsync)}]generated: {randomValue}.");
             return randomValue;
         }
@@ -119,7 +119,7 @@ namespace Samples
         {
             // This method throws exception if generated number >= 0.1
             // It represents some operation that may fail, like deleting a file
-            var randomValue = _random.NextDouble();
+            double randomValue = _random.NextDouble();
             Console.WriteLine($"[{nameof(TryDoSomething)}]generated: {randomValue}.");
             if (randomValue >= 0.1)
             {

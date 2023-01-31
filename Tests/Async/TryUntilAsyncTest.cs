@@ -22,7 +22,7 @@ namespace Tests
         [Test]
         public async Task TestTryUntilAfterFiveTimesAsync()
         {
-            var times = 5;
+            int times = 5;
             var generator = new Generator(times);
             bool result = false;
             Assert.That(
@@ -38,7 +38,7 @@ namespace Tests
         [Test]
         public async Task TestTryUntilSuccessFirstTimeAsync()
         {
-            var times = 0;
+            int times = 0;
             var generator = new Generator(times);
             bool result = false;
             Assert.That(
@@ -54,7 +54,7 @@ namespace Tests
         [Test]
         public async Task TestTryAsyncUntilAfterFiveTimesAsync()
         {
-            var times = 5;
+            int times = 5;
             var generator = new Generator(times);
             bool result = false;
             Assert.That(

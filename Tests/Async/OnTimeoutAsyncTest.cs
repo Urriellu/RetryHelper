@@ -22,7 +22,7 @@ namespace Tests
         [Test]
         public async Task TestOnTimeoutShouldNotFireAsync()
         {
-            var times = 5;
+            int times = 5;
             var generator = new Generator(times);
             await _target.TryAsync(() => generator.Next())
                 .OnTimeout(Assert.Fail)
@@ -32,9 +32,9 @@ namespace Tests
         [Test]
         public void TestOnTimeoutWithNoParameterAsync()
         {
-            var times = 5;
+            int times = 5;
             var generator = new Generator(times);
-            var onTimeoutTriggered = false;
+            bool onTimeoutTriggered = false;
             Assert.ThrowsAsync<TimeoutException>(() =>
                 _target.TryAsync(() => generator.Next())
                     .WithMaxTryCount(times - 1)
@@ -46,9 +46,9 @@ namespace Tests
         [Test]
         public void TestOnTimeoutAfterFiveTimesAsync()
         {
-            var times = 5;
+            int times = 5;
             var generator = new Generator(times);
-            var onTimeoutTriggered = false;
+            bool onTimeoutTriggered = false;
             Assert.ThrowsAsync<TimeoutException>(() =>
                 _target.TryAsync(() => generator.Next())
                     .WithMaxTryCount(times - 1)
@@ -64,9 +64,9 @@ namespace Tests
         [Test]
         public void TestOnTimeoutAsyncAfterFiveTimesAsync()
         {
-            var times = 5;
+            int times = 5;
             var generator = new Generator(times);
-            var onTimeoutTriggered = false;
+            bool onTimeoutTriggered = false;
             Assert.ThrowsAsync<TimeoutException>(() =>
                 _target.TryAsync(() => generator.Next())
                     .WithMaxTryCount(times - 1)
@@ -82,9 +82,9 @@ namespace Tests
         [Test]
         public void TestOnTimeoutAsyncWithNoParameterAsync()
         {
-            var times = 5;
+            int times = 5;
             var generator = new Generator(times);
-            var onTimeoutTriggered = false;
+            bool onTimeoutTriggered = false;
             Assert.ThrowsAsync<TimeoutException>(() =>
                 _target.TryAsync(() => generator.Next())
                     .WithMaxTryCount(times - 1)
@@ -101,10 +101,10 @@ namespace Tests
         [Test]
         public void TestOnTimeoutWithTriedCountAsync()
         {
-            var times = 5;
+            int times = 5;
             var generator = new Generator(times);
-            var onTimeoutTriggered = false;
-            var maxTryCount = times - 1;
+            bool onTimeoutTriggered = false;
+            int maxTryCount = times - 1;
             Assert.ThrowsAsync<TimeoutException>(() =>
                 _target.TryAsync(() => generator.Next())
                     .WithMaxTryCount(maxTryCount)
@@ -120,10 +120,10 @@ namespace Tests
         [Test]
         public void TestMultipleOnTimeoutAsync()
         {
-            var times = 5;
+            int times = 5;
             var generator = new Generator(times);
-            var onTimeoutTriggered1 = false;
-            var onTimeoutTriggered2 = false;
+            bool onTimeoutTriggered1 = false;
+            bool onTimeoutTriggered2 = false;
             Assert.ThrowsAsync<TimeoutException>(() =>
                 _target.TryAsync(() => generator.Next())
                     .WithMaxTryCount(times - 1)
