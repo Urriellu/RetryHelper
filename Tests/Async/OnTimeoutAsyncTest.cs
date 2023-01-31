@@ -23,7 +23,7 @@ namespace Tests
             var times = 5;
             var generator = new Generator(times);
             await _target.TryAsync(() => generator.Next())
-                .OnTimeout(() => Assert.Fail())
+                .OnTimeout(Assert.Fail)
                 .Until(t => t);
         }
 

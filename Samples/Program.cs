@@ -22,22 +22,22 @@ namespace Samples
         private static void Example1()
         {
             // Basic usage
-            RetryHelper.Instance.Try(() => TryGetValue()).Until(result => result < 0.1);
+            RetryHelper.Instance.Try(TryGetValue).Until(result => result < 0.1);
 
             // Get the result from the retried method
-            var resultSmallEnough = RetryHelper.Instance.Try(() => TryGetValue()).Until(result => result < 0.1);
+            var resultSmallEnough = RetryHelper.Instance.Try(TryGetValue).Until(result => result < 0.1);
 
             // Specify interval
-            RetryHelper.Instance.Try(() => TryGetValue()).WithTryInterval(100).Until(result => result < 0.1);
+            RetryHelper.Instance.Try(TryGetValue).WithTryInterval(100).Until(result => result < 0.1);
 
             // Specify max try count, will throw TimeoutException if exceeded
-            RetryHelper.Instance.Try(() => TryGetValue()).WithMaxTryCount(20).Until(result => result < 0.1);
+            RetryHelper.Instance.Try(TryGetValue).WithMaxTryCount(20).Until(result => result < 0.1);
 
             // Can also constrain the total try time
-            RetryHelper.Instance.Try(() => TryGetValue()).WithTimeLimit(TimeSpan.FromSeconds(10)).Until(result => result < 0.1);
+            RetryHelper.Instance.Try(TryGetValue).WithTimeLimit(TimeSpan.FromSeconds(10)).Until(result => result < 0.1);
 
             // Specify the extra success/fail/timeout action
-            RetryHelper.Instance.Try(() => TryGetValue())
+            RetryHelper.Instance.Try(TryGetValue)
                 .WithMaxTryCount(20)
                 .OnSuccess(result => Trace.TraceInformation($"Got result {result}."))
                 .OnFailure(result => Trace.TraceWarning($"Try failed. Got {result}."))
@@ -48,10 +48,10 @@ namespace Samples
         private static void Example2()
         {
             // Retry on any (non-fatal) exception
-            RetryHelper.Instance.Try(() => TryDoSomething()).UntilNoException();
+            RetryHelper.Instance.Try(TryDoSomething).UntilNoException();
 
             // Retry on specific exception
-            RetryHelper.Instance.Try(() => TryDoSomething()).UntilNoException<ApplicationException>();
+            RetryHelper.Instance.Try(TryDoSomething).UntilNoException<ApplicationException>();
 
             // Change the global default settings
             RetryHelper.Instance.DefaultMaxTryCount = 3;
@@ -74,13 +74,13 @@ namespace Samples
             await RetryHelper.Instance.Try(async () => await TryGetValueAsync()).Until(result => result < 0.1);
 
             // async/await keywords can be omitted for simplicity in this case
-            await RetryHelper.Instance.Try(() => TryGetValueAsync()).Until(result => result < 0.1);
+            await RetryHelper.Instance.Try(TryGetValueAsync).Until(result => result < 0.1);
 
             // Asynchronous until condition is also supported
             await RetryHelper.Instance.Try(async () => await TryGetValueAsync()).Until(async result => result + await TryGetValueAsync() < 0.2);
 
             // In case the operation is not asynchronous, but you want to use an asynchronous until condition, use TryAsync
-            await RetryHelper.Instance.TryAsync(() => TryGetValue()).Until(async result => result + await TryGetValueAsync() < 0.2);
+            await RetryHelper.Instance.TryAsync(TryGetValue).Until(async result => result + await TryGetValueAsync() < 0.2);
 
             // Asynchronous OnSuccess/OnFailure/OnTimeout
             // Note that asyhronous operation taken in OnFailure counts against TimeLimit,
